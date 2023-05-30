@@ -14,7 +14,7 @@ jobs:
       - name: Install latest
         uses: actions-rs/toolchain@v1
         with:
-            toolchain: latest
+            toolchain: stable
             override: true
             components: rustfmt, clippy
 
