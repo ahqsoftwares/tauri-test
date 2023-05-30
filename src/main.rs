@@ -24,7 +24,7 @@ fn main() {
   let win: &tao::window::Window = window.as_ref().unwrap();
 
   win.set_taskbar_progress_state(
-    TaskbarProgressState::Normal()
+    TaskbarProgressState::Normal
   );
   win.set_taskbar_progress(50, 100);
 
