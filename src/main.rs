@@ -6,6 +6,7 @@ use tao::{
   event::{Event, WindowEvent},
   event_loop::{ControlFlow, EventLoop},
   window::WindowBuilder,
+  TaskbarProgressState
 };
 
 #[allow(clippy::single_match)]
@@ -22,7 +23,9 @@ fn main() {
 
   let win: &tao::window::Window = window.as_ref().unwrap();
 
-  win.set_taskbar_progress_state(3);
+  win.set_taskbar_progress_state(
+    TaskbarProgressState::Normal()
+  );
   win.set_taskbar_progress(50, 100);
 
   event_loop.run(move |event, _, control_flow| {
