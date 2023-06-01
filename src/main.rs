@@ -37,9 +37,7 @@ fn main() {
   );
 
   #[cfg(target_os = "linux")]
-  for _ in 0..10 {
-    win.set_taskbar_progress(50, 100, Some("application://tao-test.desktop"));
-  }
+  win.set_taskbar_progress(50, 100, Some("application://tao-test.desktop"));
 
   event_loop.run(move |event, _, control_flow| {
     *control_flow = ControlFlow::Wait;
