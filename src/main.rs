@@ -23,14 +23,26 @@ fn main() {
 
   let win: &tao::window::Window = window.as_ref().unwrap();
 
+  #[cfg(windows)]
   win.set_taskbar_progress_state(
     TaskbarProgressState::Normal
   );
+  #[cfg(windows)]
   win.set_taskbar_progress(50, 100);
+
+  #[cfg(target_os = "linux")]
+  win.set_taskbar_progress_state(
+    TaskbarProgressState::Normal,
+    Some("application://tao-test.desktop")
+  );
+
+  #[cfg(target_os = "linux")]
+  for _ in 0..10 {
+    win.set_taskbar_progress(50, 100, Some("application://tao-test.desktop"));
+  }
 
   event_loop.run(move |event, _, control_flow| {
     *control_flow = ControlFlow::Wait;
-    println!("{:?}", event);
 
     match event {
       Event::WindowEvent {

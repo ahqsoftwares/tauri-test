@@ -23,8 +23,11 @@ jobs:
             override: true
             components: rustfmt, clippy
 
-      - name: Build
-        run: cargo build --release
+      - name: Install cargo-deb
+        run: cargo install cargo-deb
+
+      - name: Build Debian
+        run: cargo deb
 
       - name: LS
         run: cd target/release && ls

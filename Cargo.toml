@@ -2,6 +2,8 @@
 name = "tao-test"
 version = "0.1.0"
 edition = "2021"
+description = "A cool app"
+authors = ["AHQ"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
