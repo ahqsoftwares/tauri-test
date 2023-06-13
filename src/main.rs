@@ -9,6 +9,9 @@ use tao::{
   TaskbarProgressState
 };
 
+#[cfg(target_os = "linux")]
+use tao::platform::unix::WindowExtUnix;
+
 #[allow(clippy::single_match)]
 fn main() {
   let event_loop = EventLoop::new();
