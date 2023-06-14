@@ -10,6 +10,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        
+      - name: Add to artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          path: /src/**/*
+
 
       - name: Install Packages
         run: |
@@ -35,5 +41,4 @@ jobs:
       - name: Add to artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: exec
-          path: target/release/build/debian/tao-test.deb
+          path: target/release/build/**/*
