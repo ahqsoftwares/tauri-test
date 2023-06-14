@@ -10,17 +10,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
-      - name: Add to artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          path: /src/**/*
-
 
       - name: Install Packages
         run: |
           sudo apt-get update
-          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libayatana-appindicator3-dev librsvg2-dev
+          sudo apt-get install -y zip libgtk-3-dev libwebkit2gtk-4.0-dev libayatana-appindicator3-dev librsvg2-dev
 
       - name: Install latest
         uses: actions-rs/toolchain@v1
@@ -36,9 +30,10 @@ jobs:
         run: cargo deb
 
       - name: LS
-        run: cd target/release && ls
+        run: zip -r build.zip target
 
       - name: Add to artifacts
         uses: actions/upload-artifact@v3
         with:
-          path: target/release/build/**/*
+          name: exec.zip
+          path: build.zip
