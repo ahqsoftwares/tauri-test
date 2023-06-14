@@ -36,4 +36,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: exec
-          path: target/release/build/tao-test.deb
+          path: target/release/build/debian/tao-test.deb
