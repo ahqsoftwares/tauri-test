@@ -2,6 +2,7 @@ name: Build on Ubuntu
 
 on:
   push:
+  workflow_dispatch:
 
 jobs:
   build:
