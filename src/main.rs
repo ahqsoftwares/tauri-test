@@ -5,12 +5,8 @@
 use tao::{
   event::{Event, WindowEvent},
   event_loop::{ControlFlow, EventLoop},
-  window::WindowBuilder,
-  TaskbarProgressState
+  window::{WindowBuilder, ProgressBarState, ProgressState}
 };
-
-#[cfg(target_os = "linux")]
-use tao::platform::unix::WindowExtUnix;
 
 #[allow(clippy::single_match)]
 fn main() {
@@ -26,21 +22,11 @@ fn main() {
 
   let win: &tao::window::Window = window.as_ref().unwrap();
 
-  #[cfg(windows)]
-  win.set_taskbar_progress_state(
-    TaskbarProgressState::Normal
-  );
-  #[cfg(windows)]
-  win.set_taskbar_progress(50, 100);
-
-  #[cfg(target_os = "linux")]
-  win.set_taskbar_progress_state(
-    TaskbarProgressState::Normal,
-    Some("application://tao-test.desktop")
-  );
-
-  #[cfg(target_os = "linux")]
-  win.set_taskbar_progress(50, 100, Some("application://tao-test.desktop"));
+  win.set_progress_bar(ProgressBarState {
+    state: Some(ProgressState::Normal),
+    progress: Some(50),
+    unity_uri: Some("application://tao-test".to_owned())
+  });
 
   event_loop.run(move |event, _, control_flow| {
     *control_flow = ControlFlow::Wait;
